@@ -91,4 +91,14 @@ class ProductController extends Controller
         $product = Product::destroy($id);
         return response()->json(array('message' => 'Destroy successfully'), 200);
     }
+
+    /**
+     * search for product
+     */
+    public function search($name)
+    {
+        //TODO seach 
+        $product = Product::where('name', 'like', '%' . $name . '%')->get();
+        return response()->json(array('message' => 'search successfully', 'data' => $product), 200);
+    }
 }
