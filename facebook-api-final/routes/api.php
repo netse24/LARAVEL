@@ -33,6 +33,9 @@ Route::prefix('users')->group(function () {
 
     //ROTUE POST A USER
     Route::post('/users', [UserController::class, 'store']);
+
+    // ROUTE GET A USER WITH ALL POSTS 
+    Route::get('/user/{id}', [UserController::class, 'show']);
 });
 
 // POST ROUTE
@@ -43,6 +46,9 @@ Route::prefix('posts')->group(function () {
 
     //ROTUE POST A POST
     Route::post('/posts', [PostController::class, 'store']);
+
+    // ROUTE GET POST WITH LIKES AND COMMENTS 
+    Route::get('post/{id}', [PostController::class, 'show']);
 });
 
 // COMMENTS ROUTE

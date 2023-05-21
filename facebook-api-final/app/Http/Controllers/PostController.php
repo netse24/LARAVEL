@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
+use App\Http\Resources\ShowPostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,9 +51,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
         //
+        $post =  Post::find($id);
+        $post  = new ShowPostResource($post);
+        return response()->json(array('message' => 'success', 'data' => $post), 200);
     }
 
     /**
@@ -77,4 +82,12 @@ class PostController extends Controller
     {
         //
     }
+
+    // public function PostLikeWithComment(Request $request, string $id)
+    // {
+    //     $post =  Post::find($id);
+    //     $post1  = new ShowPostResource($post);
+    //     return $post1;
+
+    // }
 }
